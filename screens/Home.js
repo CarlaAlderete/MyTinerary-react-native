@@ -1,5 +1,6 @@
 import React from 'react'
 import { View, Text, StyleSheet, ImageBackground, ScrollView} from 'react-native'
+import MyCarousel from '../components.js/MyCarousel'
 
 const Home = ()=>{
     const info = [
@@ -11,10 +12,12 @@ const Home = ()=>{
     const infoContenido =info.map((obj, index) =>{
         return(
             <View key={index} style={styles.cardGr}>
-                <ImageBackground source={obj.foto} style={styles.card}></ImageBackground>
+                <View style={styles.cardCh}>
+                    <ImageBackground source={obj.foto} style={styles.card}></ImageBackground>
+                </View>
                 <View style={styles.cardInfo}>
-                    <Text>{obj.h3}</Text>
-                    <Text>{obj.text}</Text>
+                    <Text style={styles.h3}>{obj.h3}</Text>
+                    <Text style={styles.p}>{obj.text}</Text>
                 </View>
             </View> 
         )
@@ -24,9 +27,10 @@ const Home = ()=>{
         <ImageBackground source={require('../assets/fondomain2.png')} style={styles.mainHome}>
             <ScrollView>
                 {infoContenido}
+                <MyCarousel/>
             </ScrollView>
-            {/* <MyCarousel/>
-            <CallAction/> */}
+            {/* <MyCarousel/> */}
+            {/* <CallAction/> */}
         </ImageBackground>
     )
 }
@@ -44,26 +48,40 @@ const styles= StyleSheet.create({
         justifyContent:'center',
         padding:15,
     },
+    cardCh:{
+        borderWidth: 10,
+        borderBottomWidth:40,
+        borderColor:'#fff',
+        shadowColor: "#cac9c9b7",
+        shadowOffset: {
+            width: 0,
+            height: 4,
+        },
+        shadowOpacity: 0.30,
+        shadowRadius: 4.65,
+        elevation: 8,
+        margin:10, 
+    },
     card:{
         width:280,
         height:280,
-        borderWidth: 10,
-        borderBottomWidth:20,
-        borderColor:'#fff',
-        resizeMode: 'contain',
-        margin:10, 
+        resizeMode: 'contain', 
     },
     cardInfo:{
-        width:'95%',
+        width:'90%',
         alignItems:'center',
         justifyContent:'center',
+    },
+    h3:{
+        marginBottom:5,
+        fontSize:25,
+    },
+    p:{
+        textAlign:'center',
+        fontSize:15,
     }
 })
-// width: 25vw;
-//     height: 25vw;
-//     border: 1vw solid #fff;
-//     border-bottom: 3vw solid #fff;
-//     box-shadow: 1px 1px 5px 5px #cac9c9b7;
+
 // .cardInfo{
 //     display: flex;
 //     flex-direction: column;
@@ -73,9 +91,6 @@ const styles= StyleSheet.create({
 //     text-align: center;
 //     color:#000;
 //     font-size: 1.5vw;
-// }
-// #impar{
-//     order: 1;
 // }
 // .cardInfo h3{
 //     font-size: 3.5vw;
