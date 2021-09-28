@@ -1,10 +1,12 @@
 import React from 'react'
 import { Text, View, StyleSheet } from 'react-native'
 import Welcome from './screens/Welcome'
+import Home from './screens/Home'
 
 const App = ()=>{
   return(
-    <Welcome/>
+    // <Welcome/>
+    <Home/>
   )
 }
 
