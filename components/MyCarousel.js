@@ -42,6 +42,7 @@ const MyCarousel =()=>{
                   renderItem={_renderItem}
                   loop={true}
                   style={styles.divCarousel}
+                  autoplay={true}
                   />
             </ImageBackground>
           </SafeAreaView>

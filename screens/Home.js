@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, Text, StyleSheet, ImageBackground, ScrollView, Image} from 'react-native'
+import { View, Text, StyleSheet, ImageBackground, ScrollView, Image, StatusBar, Platform, SafeAreaView} from 'react-native'
 import MyCarousel from '../components/MyCarousel'
 
 const Home = ()=>{
@@ -24,27 +24,33 @@ const Home = ()=>{
     })
 
     return(
-        <ImageBackground source={require('../assets/fondomain2.png')} style={styles.mainHome}>
-            <ScrollView>
-                {infoContenido}
-                <MyCarousel/>
-                <View style={styles.divCall}>
-                    <Image source={require('../assets/download.gif')} style={styles.imgCall}/>
-                    <View style={styles.textCall}>
-                        <Text style={styles.h3}>Where do you fit in?</Text>
-                        <Text style={styles.p}>Check out our cities, share your favorite places and help keep cities up to date for everyone.</Text>
-                        <Text style={styles.call}>Click here</Text>
+        <SafeAreaView style={styles.mainHomeContain}>
+            <ImageBackground source={require('../assets/fondomain2.png')} style={styles.mainHome}>
+                <ScrollView>
+                    {infoContenido}
+                    <MyCarousel/>
+                    <View style={styles.divCall}>
+                        <Image source={require('../assets/download.gif')} style={styles.imgCall}/>
+                        <View style={styles.textCall}>
+                            <Text style={styles.h3}>Where do you fit in?</Text>
+                            <Text style={styles.p}>Check out our cities, share your favorite places and help keep cities up to date for everyone.</Text>
+                            <Text style={styles.call}>Click here</Text>
+                        </View>
+                        <Image source={require('../assets/Transvida.gif')} style={styles.imgCall}/>
                     </View>
-                    <Image source={require('../assets/Transvida.gif')} style={styles.imgCall}/>
-                </View>
-            </ScrollView>
-        </ImageBackground>
+                </ScrollView>
+            </ImageBackground>
+        </SafeAreaView>
     )
 }
 
 export default Home
 
 const styles= StyleSheet.create({
+    mainHomeContain:{
+        flex:1,
+        marginTop:Platform.OS === 'android' ? StatusBar.currentHeight : 0
+    },
     mainHome:{
         flex:1,
         justifyContent:'center',
