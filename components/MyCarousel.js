@@ -1,9 +1,8 @@
-import React, {useState} from 'react'
+import React from 'react'
 import { View, Text, StyleSheet, ImageBackground, SafeAreaView} from 'react-native'
 import Carousel from 'react-native-snap-carousel'
 
-const MyCarousel = ()=>{
-    const [activeIndex, setActiveIndex] = useState(0)
+const MyCarousel =()=>{
     const carouselItems = [
         {photo:'https://i.postimg.cc/6QQ6P1yy/copenhagen.jpg',city: 'Copenhagen'},
         {photo:'https://i.postimg.cc/3xYxXwhj/Boracay.jpg', city: 'Boracay'},
@@ -22,7 +21,9 @@ const MyCarousel = ()=>{
     const _renderItem =({item, index})=>{
         return (
             <ImageBackground source={{uri:(item.photo)}} style={styles.cardImg} imageStyle={{borderRadius: 20}}>
-                <Text style={styles.textCity}>{item.city}</Text>
+                <View style={styles.divtextCity}>
+                    <Text style={styles.textCity}>{item.city}</Text>
+                </View>
             </ImageBackground>
             )
         }
@@ -37,7 +38,7 @@ const MyCarousel = ()=>{
                   layout={'tinder'}
                   data={carouselItems}
                   sliderWidth={400}
-                  itemWidth={}
+                  itemWidth={400}
                   renderItem={_renderItem}
                   loop={true}
                   style={styles.divCarousel}
@@ -74,9 +75,16 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent:'flex-end',
     },
-    textCity: {
+    divtextCity:{
+        marginBottom:10,
+        backgroundColor:'#D3D0C96E',
+        width:'100%'
+    },
+    textCity:{
         color: 'black',
         fontWeight: 'bold',
-        fontSize: 25
+        fontSize: 35,
+        textTransform:'uppercase',
+        textAlign:'center'
     },
 })

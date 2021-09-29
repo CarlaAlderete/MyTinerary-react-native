@@ -36,7 +36,8 @@ const styles = StyleSheet.create({
     logoGrText:{
         textAlign:'center',
         color:'#fff',
-        fontWeight:'bold'
+        fontWeight:'bold',
+        fontSize:25,
     },
     call:{
         backgroundColor:'#5855551e',

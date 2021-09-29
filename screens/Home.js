@@ -1,6 +1,6 @@
 import React from 'react'
-import { View, Text, StyleSheet, ImageBackground, ScrollView} from 'react-native'
-import MyCarousel from '../components.js/MyCarousel'
+import { View, Text, StyleSheet, ImageBackground, ScrollView, Image} from 'react-native'
+import MyCarousel from '../components/MyCarousel'
 
 const Home = ()=>{
     const info = [
@@ -28,9 +28,16 @@ const Home = ()=>{
             <ScrollView>
                 {infoContenido}
                 <MyCarousel/>
+                <View style={styles.divCall}>
+                    <Image source={require('../assets/download.gif')} style={styles.imgCall}/>
+                    <View style={styles.textCall}>
+                        <Text style={styles.h3}>Where do you fit in?</Text>
+                        <Text style={styles.p}>Check out our cities, share your favorite places and help keep cities up to date for everyone.</Text>
+                        <Text style={styles.call}>Click here</Text>
+                    </View>
+                    <Image source={require('../assets/Transvida.gif')} style={styles.imgCall}/>
+                </View>
             </ScrollView>
-            {/* <MyCarousel/> */}
-            {/* <CallAction/> */}
         </ImageBackground>
     )
 }
@@ -73,26 +80,36 @@ const styles= StyleSheet.create({
         justifyContent:'center',
     },
     h3:{
+        textAlign:'center',
         marginBottom:5,
         fontSize:25,
     },
     p:{
         textAlign:'center',
         fontSize:15,
+    },
+    divCall:{
+        alignItems:'center'
+    },
+    call:{
+        backgroundColor:'#5855551e',
+        paddingLeft: 20,
+        paddingRight: 20,
+        paddingBottom: 5,
+        paddingTop: 5,
+        borderWidth:2,
+        borderColor: '#585555b6',
+        borderRadius:10,
+        fontWeight: 'bold',
+        margin:10, 
+        textAlign:'center',
+    },
+    textCall:{
+        margin:15,
+    },
+    imgCall:{
+        width:250,
+        height:250,
+        margin:20
     }
 })
-
-// .cardInfo{
-//     display: flex;
-//     flex-direction: column;
-//     justify-content: center;
-//     width: 40vw;
-//     height: 25vw;
-//     text-align: center;
-//     color:#000;
-//     font-size: 1.5vw;
-// }
-// .cardInfo h3{
-//     font-size: 3.5vw;
-//     font-family: 'Acme', sans-serif;
-// }
