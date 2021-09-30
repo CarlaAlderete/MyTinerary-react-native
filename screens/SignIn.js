@@ -1,17 +1,29 @@
 import React, {useState} from 'react'
 import {Text, StyleSheet, View, Keyboard, ImageBackground, TextInput, SafeAreaView, StatusBar, Platform, TouchableWithoutFeedback} from 'react-native'
 import {connect} from 'react-redux'
+import userActions from '../redux/actions/userActions'
 
-const SignIn = ()=>{
+const SignIn = ({singInUser})=>{
     const[data, setData] = useState({mail:'', password:''})
-    const[sign, setSign] = useState(false)
     const[error, setError] = useState('')
 
     const addDataUserHandler=(e,nameInput)=>{
         setData({...data, [nameInput]:e})
     }
 
-    console.log(data)
+    const signInUserHandler=()=>{
+        if(!data.mail || !data.password){
+            setError('*Data is missing, fill in all data')
+        }else{
+            singInUser(data)
+            .then(res=>{
+                if(!res.success){
+                    setError('*'+res.res)
+                }
+            })
+        }
+    }
+
     return(
         <TouchableWithoutFeedback onPress={()=>{Keyboard.dismiss()}}>
             <SafeAreaView style={styles.mainSign}>
@@ -19,10 +31,12 @@ const SignIn = ()=>{
                     <View style={styles.forms}>
                         <Text style={styles.h3}>Sign in with your account!</Text>
                         <Text>Don't have an account? Sign Up</Text>
-                        <Text>{error}</Text>
+                        <View style={styles.divError}>
+                            <Text style={styles.error}>{error}</Text>
+                        </View>
                         <TextInput style={styles.input} placeholder='E-mail' onChangeText={(e)=>addDataUserHandler(e,'mail')}/>
                         <TextInput style={styles.input} placeholder='Password' secureTextEntry={true} onChangeText={(e)=>addDataUserHandler(e,'password')}/>
-                        <Text style={styles.call}>Sign In</Text>
+                        <Text style={styles.call} onPress={signInUserHandler}>Sign In</Text>
                     </View>
                 </ImageBackground>
             </SafeAreaView>
@@ -30,7 +44,11 @@ const SignIn = ()=>{
     )
 }
 
-export default SignIn
+const mapDispatchToProps={
+    singInUser:userActions.singInUser
+}
+
+export default connect(null, mapDispatchToProps)(SignIn)
 
 const styles = StyleSheet.create({
     mainSign:{
@@ -78,46 +96,13 @@ const styles = StyleSheet.create({
     h3:{
         marginBottom:5,
         fontSize:25,
+    },
+    divError:{
+        height:12
+    },
+    error:{
+        color:'red',
+        fontSize:12,
+        padding:0
     }
 })
-
-  
-//     render(){
-//         const addDataUserHandler=(e)=>{
-//             this.setState({data:{...this.state.data,[e.target.name]: e.target.value}})
-//         }
-    
-//         const signInUserHandler=()=>{
-//             if(!this.state.data.mail || !this.state.data.password){
-//                 this.setState({error:'*Data is missing, fill in all data'})
-//             }else{
-//                 this.props.singInUser(this.state.data)
-//                 .then(res=>{
-//                     if(!res.success){
-//                         this.setState({error:'*'+res.res})
-//                     }
-//                 })
-//             }
-//         }
-//         const responseGoogle=res=>{
-//             let dataGoogle={
-//                 mail: res.profileObj.email.toLowerCase(),
-//                 password: res.profileObj.googleId,
-//                 flagGoogle:true
-//             }
-//             this.props.singInUser(dataGoogle)
-//                 .then(res=>{
-//                     if(!res.success){
-//                         this.setState({error:'*'+res.res})
-//                     }
-//                 })
-//         }
-
-//                         <input type='email' value={this.state.data.mail} placeholder='E-mail' name='mail' onChange={addDataUserHandler}/>
-//                         <input type='password' value={this.state.data.password} placeholder='Password' name='password' onChange={addDataUserHandler}/>
-//                         <button onClick={signInUserHandler}>Sign In</button>
-
-// const mapDispatchToProps={
-//     singInUser:userActions.singInUser
-// }
-// export default connect(null, mapDispatchToProps)(SingIn)

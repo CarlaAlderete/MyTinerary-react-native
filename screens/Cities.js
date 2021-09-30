@@ -1,5 +1,5 @@
 import React from 'react'
-import { StyleSheet, ScrollView, ImageBackground } from 'react-native'
+import { StyleSheet, ScrollView, ImageBackground} from 'react-native'
 import Hero from '../components/Hero'
 import CardCity from '../components/CardCity'
 

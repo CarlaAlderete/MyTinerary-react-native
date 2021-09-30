@@ -14,7 +14,7 @@ const styles = StyleSheet.create({
     hero:{
         width:'100%',
         height:450,
-        resizeMode:'contain',
+        resizeMode:'cover',
         alignItems:'flex-end',
         justifyContent:'flex-end'
     },
