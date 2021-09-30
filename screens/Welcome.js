@@ -1,14 +1,14 @@
 import React from 'react'
 import { View, Text, StyleSheet, Image} from 'react-native'
 
-const Welcome = ()=>{
+const Welcome =({navigation})=>{
     return(
         <View style={styles.mainWelcome}>
             <View style={styles.logoGr}>
                 <Image source={require('../assets/logo.png')} style={styles.icon}/>
                 <Text style={styles.logoGrText}>Find your perfect trip, designed by insiders who know and love their cities!</Text>
             </View>
-            <Text style={styles.call}>GO</Text>
+            <Text style={styles.call} onPress={()=>navigation.navigate('Home')}>GO</Text>
         </View>
     )
 }
@@ -47,8 +47,10 @@ const styles = StyleSheet.create({
         paddingTop: 5,
         borderWidth:2,
         borderColor: '#585555b6',
-        borderRadius:10,
+        borderRadius:15,
         fontWeight: 'bold',
         margin:2,
+        width:80,
+        textAlign:'center'
     }
 })

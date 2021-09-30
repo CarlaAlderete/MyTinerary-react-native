@@ -1,9 +1,10 @@
-import React from 'react'
+import React, { useState } from 'react'
 import {Image, ImageBackground, StyleSheet} from 'react-native'
 
 const Hero = ({photo})=>{
+
     return(
-        <ImageBackground source={require('../assets/tres.jpg')} style={styles.hero}>
+        <ImageBackground source={{uri: photo==='https://i.postimg.cc/C1zZjntx/tres.jpg' ? 'https://i.postimg.cc/C1zZjntx/tres.jpg' :`https://mytinerary-ca.herokuapp.com/assets/${photo}`}} style={styles.hero}>
             <Image source={require('../assets/logo.png')} style={styles.logo}/>
         </ImageBackground>
     )

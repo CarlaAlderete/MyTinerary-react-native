@@ -1,32 +1,21 @@
 import React from 'react'
-import { Text, View, StyleSheet } from 'react-native'
 import { createStore, applyMiddleware } from 'redux'
 import { Provider } from 'react-redux'
 import rootReducer from './redux/reducers/rootReducer'
 import thunk from 'redux-thunk'
-import Cities from './screens/Cities'
+import {NavigationContainer} from '@react-navigation/native'
+import MainNavStack from './navigation/MainNavStack'
 
 const globalStore = createStore(rootReducer, applyMiddleware(thunk))
 
 const App = ()=>{
   return(
     <Provider store={globalStore}>
-      <Cities/>
+      <NavigationContainer>
+        <MainNavStack/>
+      </NavigationContainer>
     </Provider>
   )
 }
 
 export default App
-
-const styles = StyleSheet.create({
-  main:{
-    flex:1,
-    backgroundColor:'#000',
-    alignItems:'center',
-    justifyContent:'center'
-  },
-  h1:{
-    color:'red',
-    fontSize:30
-  }
-})

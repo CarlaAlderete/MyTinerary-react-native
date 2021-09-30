@@ -1,26 +1,26 @@
 import React, {useState, useEffect} from 'react'
 import {connect} from 'react-redux'
 import citiesActions from "../redux/actions/citiesActions"
-import {ImageBackground, Text, SafeAreaView, StyleSheet,FlatList, TextInput, View, Image} from 'react-native'
+import {ImageBackground, Text, SafeAreaView, StyleSheet,FlatList, TextInput, View, Image, Pressable} from 'react-native'
 
-const CardCity=({newCities,filterCities,getCities})=>{
+const CardCity=({newCities,filterCities,getCities,navigation})=>{
     const [loading, setLoading] = useState({condition:true, text:''})
-    const cities=[
-    'https://i.postimg.cc/7Z9YmyPF/amsterdam.jpg',
-    'https://i.postimg.cc/3NzDrQ0S/ny.jpg',
-    'https://i.postimg.cc/4yHmS22z/Reykjavik.jpg',
-    'https://i.postimg.cc/jj8tG4dR/losangeles.jpg',
-    'https://i.postimg.cc/13GNSTmB/londres.jpg',
-    'https://i.postimg.cc/1RdFrw7G/Rio.jpg',
-    'https://i.postimg.cc/cJ51GMnT/baires.jpg',
-    'https://i.postimg.cc/3xYxXwhj/Boracay.jpg',
-    'https://i.postimg.cc/6QQ6P1yy/copenhagen.jpg',
-    'https://i.postimg.cc/fTXv38Wt/ibiza.jpg',
-    'https://i.postimg.cc/MTXrXy0Z/phuket.jpg',
-    'https://i.postimg.cc/JhKDDkBB/Mykonos.jpg',
-    'https://i.postimg.cc/xTbzx8BW/toronto.jpg',
-    'https://i.postimg.cc/sg49m1h3/telaviv.jpg',
-    'https://i.postimg.cc/MGzfpDXS/sanfrancisco.jpg']
+    // const cities=[
+    // 'https://i.postimg.cc/7Z9YmyPF/amsterdam.jpg',
+    // 'https://i.postimg.cc/3NzDrQ0S/ny.jpg',
+    // 'https://i.postimg.cc/4yHmS22z/Reykjavik.jpg',
+    // 'https://i.postimg.cc/jj8tG4dR/losangeles.jpg',
+    // 'https://i.postimg.cc/13GNSTmB/londres.jpg',
+    // 'https://i.postimg.cc/1RdFrw7G/Rio.jpg',
+    // 'https://i.postimg.cc/cJ51GMnT/baires.jpg',
+    // 'https://i.postimg.cc/3xYxXwhj/Boracay.jpg',
+    // 'https://i.postimg.cc/6QQ6P1yy/copenhagen.jpg',
+    // 'https://i.postimg.cc/fTXv38Wt/ibiza.jpg',
+    // 'https://i.postimg.cc/MTXrXy0Z/phuket.jpg',
+    // 'https://i.postimg.cc/JhKDDkBB/Mykonos.jpg',
+    // 'https://i.postimg.cc/xTbzx8BW/toronto.jpg',
+    // 'https://i.postimg.cc/sg49m1h3/telaviv.jpg',
+    // 'https://i.postimg.cc/MGzfpDXS/sanfrancisco.jpg']
   
     useEffect(()=>{
         if(!newCities.length){
@@ -64,13 +64,15 @@ const CardCity=({newCities,filterCities,getCities})=>{
                     data={newCities}
                     keyExtractor={item => item._id}
                      renderItem={({item}) => (
-                        <View style={styles.divCityImg}>
-                            <ImageBackground source={{uri:`${cities.find(obj=> obj.includes(item.photo))}`}} style={styles.cityImg} imageStyle={{borderRadius:20}}>
-                               <View style={styles.divtextCity}>
-                                    <Text style={styles.textCity}>{`${item.city.toUpperCase()} - ${item.country.toUpperCase()}`}</Text>
-                               </View>
-                            </ImageBackground>
-                        </View>
+                        <Pressable onPress={()=>navigation.navigate('City',{id:item._id, photo:item.photo})}>
+                            <View style={styles.divCityImg}>
+                                <ImageBackground source={{uri:`https://mytinerary-ca.herokuapp.com/assets/${item.photo}`}} style={styles.cityImg} imageStyle={{borderRadius:20}}>
+                                <View style={styles.divtextCity}>
+                                        <Text style={styles.textCity}>{`${item.city.toUpperCase()} - ${item.country.toUpperCase()}`}</Text>
+                                </View>
+                                </ImageBackground>
+                            </View>
+                        </Pressable>
                 )}
                 />}
             </View>  
