@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import {connect} from 'react-redux'
 import citiesActions from "../redux/actions/citiesActions"
-import {ImageBackground, Text, SafeAreaView, StyleSheet,FlatList, TextInput, View, Image, Pressable} from 'react-native'
+import {ImageBackground, Text, StyleSheet,FlatList, TextInput, View, Image, Pressable} from 'react-native'
 
 const CardCity=({newCities,filterCities,getCities,navigation})=>{
     const [loading, setLoading] = useState({condition:true, text:''})
@@ -35,7 +35,7 @@ const CardCity=({newCities,filterCities,getCities,navigation})=>{
         }
 
     return(
-        <SafeAreaView style={styles.mainCities}>
+        <View style={styles.mainCities}>
             <View style={styles.divInput}>
                 <Text style={styles.h3}>Destinations</Text>
                 <Text style={styles.p}>In our tours we try to show you the best of each area for our clients in a unique LGTBIQ+ experience.</Text>
@@ -60,7 +60,7 @@ const CardCity=({newCities,filterCities,getCities,navigation})=>{
                 )}
                 />}
             </View>  
-        </SafeAreaView>
+        </View>
     )
 }
 const mapStateToProps=(state)=>{

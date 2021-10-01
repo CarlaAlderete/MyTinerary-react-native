@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import ModalSelector from 'react-native-modal-selector'
 import userActions from '../redux/actions/userActions'
 
-const SignUp = ({getcountries,postNewUser})=>{
+const SignUp = ({navigation,postNewUser})=>{
     const country=[{key: 1,label:'Azerbaijan'},{key: 2,label:'Argentina'},{key: 3,label:'Belize'},{key: 4,label:'Brazil'},{key: 5,label:'Denmark'},{key: 6,label:'France'},{key: 7,label:'Germany'},{key: 8,label:'Iceland'},{key: 9,label:'Spain'},{key: 10,label:'United States'}]
     const [data, setData]= useState({name:'',lastName:'',mail:'',password:'',src:'',country:'', verifyPassword:null})
     const [errorFront, setErrorFront]= useState('')
@@ -36,6 +36,8 @@ const SignUp = ({getcountries,postNewUser})=>{
                     }else{
                         res.res.map(obj=>setMessage({...message, [obj.path[0]]: obj.message}))
                     }  
+                }else{
+                    navigation.navigate('Home')
                 }
             })
         }
@@ -51,7 +53,10 @@ const SignUp = ({getcountries,postNewUser})=>{
                 <ImageBackground source={require('../assets/fondoerror.jpg')} style={styles.mainImg}>
                     <View style={styles.forms}>
                         <Text>Sign up! It is fast and easy.</Text>
-                        <Text>Already have an account? Sign In</Text>
+                        <View style={styles.sign}>
+                            <Text>Already have an account?</Text>
+                            <Text onPress={()=>navigation.navigate('SignIn')} style={styles.link}>Sign In</Text>
+                        </View>
                         <View>
                             <Text>{errorFront}</Text>
                         </View>
@@ -164,6 +169,12 @@ const styles = StyleSheet.create({
         color:'red',
         fontSize:12,
         padding:0
+    },
+    sign:{
+        flexDirection:'row'
+    },
+    link:{
+        color:'blue'
     }
 })
 

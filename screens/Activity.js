@@ -1,55 +1,107 @@
 import React, {useEffect, useState} from 'react'
 import {connect} from 'react-redux'
-import {Text} from 'react-native'
+import {Text,Image,ImageBackground,View,StyleSheet,Dimensions,ScrollView} from 'react-native'
 import itinerariesActions from '../redux/actions/itinerariesActions'
+import Carousel, {ParallaxImage} from 'react-native-snap-carousel'
+import Comments from '../components/Comments'
 
-const Activity=({route,itineraryId,getActivitiesByItinerary})=>{
+const Activity=({route,getActivitiesByItinerary})=>{
     const [activities, setActivities] = useState([])
     const [loading, setLoading] = useState(true)
+    const { width: screenWidth } = Dimensions.get('window')
 
+    useEffect(()=>{
+        getActivitiesByItinerary(route.params.itineraryId)
+        .then(res=>{
+            if(res.success){
+                setActivities(res.res)
+                setLoading(false)
+            }else{
+                console.log(res)
+            }
+        })
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    },[])
+
+    const _renderItem =({item, index}, parallaxProps)=>{
+        return (
+            <View style={styles.item}>
+                <ParallaxImage
+                    source={{ uri: item.src }}
+                    containerStyle={styles.cardImg}
+                    parallaxFactor={0.4}
+                    {...parallaxProps}
+                />
+                <Text style={styles.textCityh3} numberOfLines={2}>{item.name}</Text>
+                <Text style={styles.textCityP} numberOfLines={3}>{item.description}</Text>
+            </View>
+            )
+    }
+    if(loading){
+        return <Image source={require('../assets/loading.gif')} style={styles.loading}/>
+    }
     return (
-        <Text>soy activiti</Text>
-        // <>
-        //     <h2>Activities to do</h2>
-        //     <div className='activities'>
-        //         {!activities.length ? <h2>There are not activity yet!</h2> : activity}
-        //     </div>
-        // </>
+        <ScrollView>
+            <Carousel
+                sliderWidth={screenWidth}
+                sliderHeight={550}
+                itemWidth={screenWidth - 60}
+                data={activities}
+                renderItem={_renderItem}
+                hasParallaxImages={true}
+                loop={true}
+                autoplay={true}
+                style={styles.itemGr}
+            />
+            <Comments itineraryId={route.params.itineraryId}/>
+        </ScrollView>
     )
 }
-export default connect(null, null)( Activity) 
+const mapDispatcToProps={
+    getActivitiesByItinerary:itinerariesActions.getActivitiesByItinerary
+}
 
+export default connect(null, mapDispatcToProps)( Activity) 
 
-//     useEffect(()=>{
-//         getActivitiesByItinerary(itineraryId)
-//         .then(res=>{
-//             if(res.success){
-//                 setActivities(res.res)
-//                 setLoading(false)
-//             }else{
-//                 console.log(res)
-//             }
-//         })
-//         // eslint-disable-next-line react-hooks/exhaustive-deps
-//     },[])
+const styles=StyleSheet.create({
+    mianActivity:{
+        flex:1,
+        backgroundColor:'red'
+    },
+    loading:{
+        flex:1,
+        padding:30,
+        alignSelf:'center',
+        resizeMode:'contain'
+    },
+    item:{
+        marginTop:15,
+        marginBottom:'28%',
+        height: 550,
+    },
+    cardImg:{
+        height:'100%',
+        alignItems:'flex-end',
+        borderRadius: 20,
+        alignItems: 'center',
+        justifyContent:'flex-end',
+        borderWidth:2,
+        borderColor:'#000'
+    },
+    divtextCity:{
+        width:'100%',
+        justifyContent:'center',
+        backgroundColor:'#D3D0C96E',
+        marginBottom:10,
+    },
+    textCityh3:{
+        fontSize:25,
+        textTransform:'uppercase',
+        textAlign:'center'
+    },
+    textCityP:{
+        fontSize:18,
+        textAlign:'center'
+    }
 
-//     let activity=activities.map((obj, index)=>{
-//         return(
-//             <div className='activity' key={index} style={{backgroundImage:`url("${obj.src}")`}}>
-//                 <div>
-//                     <h4>{obj.name}</h4>
-//                     <p>{obj.description}</p>
-//                 </div>
-//             </div>
-//         )
-//     })
-
-// if(loading){
-//     return <img  className='loading' src='/assets/loading.gif' alt='loading...'/>
-// }
-
-// }
-// const mapDispatcToProps={
-//     getActivitiesByItinerary:itinerariesActions.getActivitiesByItinerary
-// }
-// 
+})

@@ -24,7 +24,7 @@ const Home = ({navigation})=>{
     })
 
     return(
-        <SafeAreaView style={styles.mainHomeContain}>
+        <View style={styles.mainHomeContain}>
             <ImageBackground source={require('../assets/fondomain2.png')} style={styles.mainHome}>
                 <ScrollView>
                     {infoContenido}
@@ -40,7 +40,7 @@ const Home = ({navigation})=>{
                     </View>
                 </ScrollView>
             </ImageBackground>
-        </SafeAreaView>
+        </View>
     )
 }
 

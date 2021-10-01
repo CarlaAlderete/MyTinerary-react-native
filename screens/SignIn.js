@@ -1,9 +1,9 @@
 import React, {useState} from 'react'
-import {Text, StyleSheet, View, Keyboard, ImageBackground, TextInput, SafeAreaView, TouchableWithoutFeedback} from 'react-native'
+import {Text, StyleSheet, View, Keyboard, ImageBackground, TextInput, SafeAreaView, TouchableWithoutFeedback, Pressable} from 'react-native'
 import {connect} from 'react-redux'
 import userActions from '../redux/actions/userActions'
 
-const SignIn = ({singInUser})=>{
+const SignIn = ({singInUser,navigation})=>{
     const[data, setData] = useState({mail:'', password:''})
     const[error, setError] = useState('')
 
@@ -12,6 +12,7 @@ const SignIn = ({singInUser})=>{
     }
 
     const signInUserHandler=()=>{
+        console.log('aprete el boto')
         if(!data.mail || !data.password){
             setError('*Data is missing, fill in all data')
         }else{
@@ -19,6 +20,8 @@ const SignIn = ({singInUser})=>{
             .then(res=>{
                 if(!res.success){
                     setError('*'+res.res)
+                }else{
+                    navigation.navigate('Home')
                 }
             })
         }
@@ -30,7 +33,10 @@ const SignIn = ({singInUser})=>{
                 <ImageBackground source={require('../assets/fondoerror.jpg')} style={styles.mainImg}>
                     <View style={styles.forms}>
                         <Text style={styles.h3}>Sign in with your account!</Text>
-                        <Text>Don't have an account? Sign Up</Text>
+                        <View style={styles.sign}>
+                            <Text>Don't have an account?</Text>
+                            <Text onPress={()=>navigation.navigate('SignUp')} style={styles.link}>Sign Up</Text>
+                        </View>
                         <View style={styles.divError}>
                             <Text style={styles.error}>{error}</Text>
                         </View>
@@ -103,5 +109,11 @@ const styles = StyleSheet.create({
         color:'red',
         fontSize:12,
         padding:0
+    },
+    sign:{
+        flexDirection:'row'
+    },
+    link:{
+        color:'blue'
     }
 })
