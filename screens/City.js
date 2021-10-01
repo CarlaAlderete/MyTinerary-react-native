@@ -6,8 +6,7 @@ import itinerariesActions from '../redux/actions/itinerariesActions'
 import Itinerary from '../components/Itinerary'
 import Hero from '../components/Hero'
 
-const City=({route,getOneCity,getItineraries,itineraries,city})=>{
-    console.log(route.params.photo)
+const City=({route,getOneCity,getItineraries,itineraries,city,navigation})=>{
 
     useEffect(()=>{
         getOneCity(route.params.id)
@@ -15,26 +14,28 @@ const City=({route,getOneCity,getItineraries,itineraries,city})=>{
     },[])
 
     const itinerariesByCity = !itineraries.length 
-    ? <ImageBackground style={styles.nullItineraries} source={require('../assets/fondoerror.jpg')}>
-        <Text>There are not itinerary yet!</Text>
-      </ImageBackground>
+    ? <View style={styles.divnullItineraries}>
+        <ImageBackground style={styles.nullItineraries} source={require('../assets/fondoerror.jpg')} imageStyle={{borderRadius:18}}>
+            <View style={styles.divText}>
+                <Text style={styles.text}>There are not itinerary yet!</Text>
+            </View>
+        </ImageBackground>
+      </View>
     : <FlatList
         data={itineraries}
         keyExtractor={item => item._id}
-        renderItem={({item}) => <Itinerary/>}/>
+        renderItem={({item}) => <Itinerary itinerary={item} navigation={navigation}/>}/>
 
     return(
         <ScrollView>
             <Hero photo={route.params.photo}/>
-            <View style={styles.mainCity}>
-                <Text>{city.city}</Text>
-                <View style={styles.cardCh}>
-                    <ImageBackground source={{uri:`https://mytinerary-ca.herokuapp.com/assets/${city.photoDescription}`}} style={styles.imgDescrip}></ImageBackground> 
-                </View>
-                <Text>{city.description}</Text>
-                <Text>Here are some of our Itineraries!</Text>
-                {itinerariesByCity}
+            <Text style={styles.h3}>{city.city}</Text>
+            <View style={styles.cardCh}>
+                <ImageBackground source={{uri:`https://mytinerary-ca.herokuapp.com/assets/${city.photoDescription}`}} style={styles.imgDescrip}></ImageBackground> 
             </View>
+            <Text style={styles.p}>{city.description}</Text>
+            <Text style={styles.h3}>Here are some of our Itineraries!</Text>
+            {itinerariesByCity}
         </ScrollView>
     )
 }
@@ -51,18 +52,38 @@ const mapDispatchToProps={
 export default connect(mapStateToProps, mapDispatchToProps)(City)
 
 const styles = StyleSheet.create({
-    mainCity:{
-        flex:1,
-        alignContent:'center',
-        justifyContent:'center'
+    h3:{
+        textAlign:'center',
+        margin:7,
+        fontSize:25,
+    },
+    divnullItineraries:{
+        width:'90%',
+        alignSelf:'center',
+        borderRadius:20,
+        borderWidth:2,
+        borderColor:'black',
+        marginBottom:25
     },
     nullItineraries:{
-        width:250,
-        height:250
+        width:'100%',
+        height:300,
+        justifyContent:'flex-end'
+    },
+    divText:{
+        backgroundColor:'#D3D0C96E',
+        width:'100%',
+        padding:5,
+        marginBottom:20,
+    },
+    text:{
+        fontSize:25,
+        textAlign:'center'
     },
     cardCh:{
-        width:300,
-        height:300,
+        alignSelf:'center',
+        width:325,
+        height:325,
         borderWidth: 10,
         borderBottomWidth:40,
         borderColor:'#fff',
@@ -80,29 +101,10 @@ const styles = StyleSheet.create({
         width:'100%',
         height:'100%'
     },
+    p:{
+        textAlign:'center',
+        fontSize:15,
+        paddingVertical:10,
+        paddingHorizontal:30
+    },
 })
-
-
-        
-
-
-
-//             
-//      
-//                 <div className='cityOnly' style={{backgroundImage:`url("/assets/fondomain2.png")`,}}>
-//                     
-//                     <div className='descrGr'>
-//                         <p data-aos="fade-right">{this.props.city.description}</p>
-//                         <div className='descr' data-aos="fade-left" style={{backgroundImage:`url("/assets/${this.props.}")`,}}></div>
-//                     </div>
-//                     
-//                    
-//                    
-//                 </div>
-//               
-//             
-//         )
-//     }
-// }
-
-// 

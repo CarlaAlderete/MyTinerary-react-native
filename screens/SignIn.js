@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import {Text, StyleSheet, View, Keyboard, ImageBackground, TextInput, SafeAreaView, StatusBar, Platform, TouchableWithoutFeedback} from 'react-native'
+import {Text, StyleSheet, View, Keyboard, ImageBackground, TextInput, SafeAreaView, TouchableWithoutFeedback} from 'react-native'
 import {connect} from 'react-redux'
 import userActions from '../redux/actions/userActions'
 
@@ -53,7 +53,6 @@ export default connect(null, mapDispatchToProps)(SignIn)
 const styles = StyleSheet.create({
     mainSign:{
         flex:1,
-        marginTop:Platform.OS === 'android' ? StatusBar.currentHeight : 0
     },
     mainImg:{
         flex:1,
