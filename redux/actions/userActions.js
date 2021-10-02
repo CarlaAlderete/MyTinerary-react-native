@@ -31,22 +31,21 @@ const userActions={
             }
         }
     },
+    signOut:()=>{
+        return(dispatch, getState)=>{
+            dispatch({type:'SIGN_OUT_USER'})
+        }
+    }
 }
 export default userActions
 
 
 
-//     singOut:()=>{
-//        return(dispatch, getState)=>{
-//            dispatch({type:'SIGN_OUT_USER'})
-//        }
-//     },
+    
 //     forcedSignIn:(data)=>{
 //         return async(dispatch,getState)=>{
 //             try{
 //                 let res = await axios.get('http://localhost:4000/api/user/signin',{
-//                     headers:{
-//                         Authorization: 'Bearer '+ data
 //                     }
 //                 })
 //                 dispatch({type:'SIGN_IN_USER',payload:{name:res.data.name, photo:res.data.photo, id:res.data.id, token:data}})

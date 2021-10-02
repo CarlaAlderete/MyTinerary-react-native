@@ -1,5 +1,7 @@
 import React from 'react'
-import {createDrawerNavigator} from '@react-navigation/drawer'
+import { connect } from 'react-redux'
+import userActions from '../redux/actions/userActions'
+import {createDrawerNavigator, DrawerContentScrollView, DrawerItem, DrawerItemList} from '@react-navigation/drawer'
 import Welcome from '../screens/Welcome'
 import Home from '../screens/Home'
 import SignIn from '../screens/SignIn'
@@ -8,10 +10,10 @@ import Cities from '../screens/Cities'
 
 const Drawer = createDrawerNavigator()
 
-const Navigator=()=>{
+const Navigator=({user,signOut})=>{
     return(
-        <Drawer.Navigator>
-            <Drawer.Screen name='Welcome' component={Welcome}/>
+        <Drawer.Navigator screenOptions={{headerStyle:{backgroundColor:'tomato'}}}>
+            <Drawer.Screen name='Welcome' component={Welcome} options={{headerShown:false}}/>
             <Drawer.Screen name='SignIn' component={SignIn}/>
             <Drawer.Screen name='SignUp' component={SignUp}/>
             <Drawer.Screen name='Home' component={Home}/>
@@ -19,4 +21,13 @@ const Navigator=()=>{
         </Drawer.Navigator>
     )
 }
-export default Navigator
+
+const mapStateToProps=(state)=>{
+    return{
+        user:state.user.user
+    }
+}
+const mapDispatchToProps={
+    signOut:userActions.signOut
+}
+export default connect(mapStateToProps, mapDispatchToProps)(Navigator)
