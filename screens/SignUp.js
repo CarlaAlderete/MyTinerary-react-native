@@ -77,8 +77,31 @@ const SignUp = ({navigation,postNewUser})=>{
                             data={country}
                             initValue="Select Coutry"
                             supportedOrientations={['landscape']}
+                            cancelButtonAccessible={true}
                             accessible={true}
                             scrollViewAccessibilityLabel={'Scrollable options'}
+                            overlayStyle={{
+                                alignItems:'center'
+                            }}
+                            optionTextStyle={{
+                                color:'black',
+                                fontSize:20
+                            }}
+                            touchableActiveOpacity={0,7}
+                            optionContainerStyle={{
+                                width:150,
+                                backgroundColor:'#C1C1C1',
+                                alignSelf:'center',
+                            }}
+                            optionStyle={{
+                                backgroundColor:'#C1C1C1',
+                                width:150,
+                                margin:0,
+                                alignSelf:'center'
+                            }}
+                            cancelStyle={{
+                                display:'none'
+                            }}
                             onChange={(option)=> setData({...data, country:option.label})}>
                             <TextInput
                                 editable={false}

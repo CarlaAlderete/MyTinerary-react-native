@@ -9,7 +9,8 @@ import { AppLoading } from 'expo-app-loading'
 import { useFonts } from 'expo-font'
 import {Roboto_400Regular,Roboto_700Bold} from '@expo-google-fonts/roboto'
 import {Acme_400Regular} from '@expo-google-fonts/acme'
-
+import {LogBox} from 'react-native'
+LogBox.ignoreAllLogs(true)
 
 const globalStore = createStore(rootReducer, applyMiddleware(thunk))
 
@@ -30,6 +31,6 @@ const App = ({tokenUser, forcedSignIn})=>{
       </NavigationContainer>
     </Provider>
   )
- 
+
 }
 export default App

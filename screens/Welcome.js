@@ -16,6 +16,7 @@ const Welcome =({navigation})=>{
                 useNativeControls={false}
                 resizeMode="Video.RESIZE_MODE_CONTAIN"
                 shouldPlay
+                posterSource={require('../assets/videoFondo.jpeg')}
                 isLooping />
         </View>
     )

@@ -3,10 +3,12 @@ import {ImageBackground, Text, View, StyleSheet, Image,Alert} from 'react-native
 import { connect } from 'react-redux'
 import {Icon} from 'react-native-elements'
 import itinerariesActions from '../redux/actions/itinerariesActions'
+import AwesomeAlert from 'react-native-awesome-alerts'
 
 const Itinerary =({itinerary,changeOneItineraryLike,user1,userId,usertoken,navigation})=>{
     const {name, photo, user, description, info, like, _id}=itinerary
     const [likeIcon, setLikeIcon] = useState ({cant:like.length, condition:''})
+    const [showAlert, setShowAlert] = useState(false)
 
     useEffect(()=>{
         like.includes(userId) ? setLikeIcon({...likeIcon, condition:true}) : setLikeIcon({...likeIcon, condition:false})
@@ -19,23 +21,12 @@ const Itinerary =({itinerary,changeOneItineraryLike,user1,userId,usertoken,navig
                 likeIcon.condition === false ? setLikeIcon({cant:res.res.length, condition:true}) : setLikeIcon({cant:res.res.length, condition:false})
             })
         }else{
-            Alert.alert(
-                'Sing In to like',
-                '',
-                [{text: 'Sing In',
-                 onPress: ()=>navigation.navigate('SignIn')},
-                 {text: 'Sing Up',
-                 onPress: ()=>navigation.navigate('SignUp')},
-                {text: "Cancel",
-                 style: "cancel"}],
-                {cancelable: true}
-            )
+            setShowAlert(true)
         }
     }
 
     const twitter = info.hashtag.map(obj => <Text key={obj} style={styles.hashtag}>#{obj} </Text>)
     const icon = [...Array(parseInt(info.price))].map((obj, index) => <Image source={require('../assets/money.png')} key={index} style={styles.dollar}/>)
-    console.log(user1)
     return(
         <View style={styles.mainItinerary}>
             <View style={styles.divItinerary}>
@@ -80,6 +71,29 @@ const Itinerary =({itinerary,changeOneItineraryLike,user1,userId,usertoken,navig
                 </View>
                 <Text style={styles.call} onPress={()=>navigation.navigate('Activity',{itineraryId:_id})}>Activity</Text>
             </View>
+            <AwesomeAlert
+                show={showAlert}
+                showProgress={false}
+                animatedValue={0,5}
+                title="Sing In to like"
+                closeOnTouchOutside={true}
+                closeOnHardwareBackPress={false}
+                showCancelButton={true}
+                showConfirmButton={true}
+                cancelText="Cancel"
+                confirmText="Sing In"
+                confirmButtonColor="#2BC900"
+                cancelButtonColor='#C90000'
+                onCancelPressed={() => setShowAlert(false)}
+                onConfirmPressed={() => navigation.navigate('SignIn')}
+                confirmButtonStyle={{
+                    color:'black'
+                }}
+                titleStyle={{
+                    fontFamily:'Acme_400Regular',
+                    fontSize:30
+                }}
+            />
         </View>
     )
 }
@@ -87,7 +101,6 @@ const mapStateToProps= (state)=>{
     return{
         usertoken:state.user.user.token,
         userId:state.user.user.id,
-        user1:state.user.user
     }
 }
 const mapDispatchToProps={

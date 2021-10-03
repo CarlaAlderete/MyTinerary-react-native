@@ -92,7 +92,7 @@ const styles= StyleSheet.create({
     },
     p:{
         textAlign:'center',
-        fontSize:15,
+        fontSize:20,
         fontFamily:'Roboto_400Regular'
     },
     divCall:{
@@ -108,6 +108,7 @@ const styles= StyleSheet.create({
         borderColor: '#585555b6',
         borderRadius:10,
         fontFamily:'Roboto_700Bold',
+        fontSize:25,
         margin:10, 
         textAlign:'center',
     },

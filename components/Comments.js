@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import {connect} from 'react-redux'
 import {Text, TextInput,View,StyleSheet} from 'react-native'
+import AwesomeAlert from 'react-native-awesome-alerts'
 import {Icon} from 'react-native-elements'
 import itinerariesActions from '../redux/actions/itinerariesActions'
 import EveryComment from './EveryComment'
@@ -9,6 +10,7 @@ const Comments=({getComments,addComment,editComment,userToken,userId,itineraryId
     const [text, setText] = useState('')
     const [newComments, setNewComments] = useState([])
     const [error, setError]= useState('')
+    const [showAlert, setShowAlert] = useState(false)
 
     useEffect(()=>{
         getComments(itineraryId)
@@ -55,9 +57,32 @@ const Comments=({getComments,addComment,editComment,userToken,userId,itineraryId
                     name='paper-plane'
                     type='font-awesome'
                     color='black'
-                    onPress={!userToken ? null : addCommentHandler}
+                    onPress={!userToken ? ()=>setShowAlert(true) : addCommentHandler}
                 />
             </View>
+            <AwesomeAlert
+                show={showAlert}
+                showProgress={false}
+                animatedValue={0,5}
+                title="Sing In to comment"
+                closeOnTouchOutside={true}
+                closeOnHardwareBackPress={false}
+                showCancelButton={true}
+                showConfirmButton={true}
+                cancelText="Cancel"
+                confirmText="Sing In"
+                confirmButtonColor="#2BC900"
+                cancelButtonColor='#C90000'
+                onCancelPressed={() => setShowAlert(false)}
+                onConfirmPressed={() => navigation.navigate('SignIn')}
+                confirmButtonStyle={{
+                    color:'black'
+                }}
+                titleStyle={{
+                    fontFamily:'Acme_400Regular',
+                    fontSize:30
+                }}
+            />
         </View>
     )
 }

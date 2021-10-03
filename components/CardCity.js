@@ -43,7 +43,7 @@ const CardCity=({newCities,filterCities,getCities,navigation})=>{
             </View>
             <View className='citiesGr'>
                 {!newCities.length 
-                ? <Text>Sorry, there are no hits.</Text> 
+                ? <Text style={styles.h2}>Sorry, there are no hits.</Text> 
                 :<FlatList
                     data={newCities}
                     keyExtractor={item => item._id}
@@ -88,6 +88,11 @@ const styles = StyleSheet.create({
         marginTop:12,
         alignItems:'center',
     },
+    h2:{
+        margin:10,
+        fontSize:35,
+        fontFamily:'Acme_400Regular'  
+    },
     h3:{
         marginBottom:8,
         fontSize:35,
@@ -95,7 +100,7 @@ const styles = StyleSheet.create({
     },
     p:{
         textAlign:'center',
-        fontSize:15,
+        fontSize:18,
         marginBottom:3,
         fontFamily:'Roboto_400Regular'
     },
