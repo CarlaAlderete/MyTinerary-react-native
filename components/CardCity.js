@@ -90,12 +90,14 @@ const styles = StyleSheet.create({
     },
     h3:{
         marginBottom:8,
-        fontSize:25
+        fontSize:35,
+        fontFamily:'Acme_400Regular'
     },
     p:{
         textAlign:'center',
         fontSize:15,
-        marginBottom:3
+        marginBottom:3,
+        fontFamily:'Roboto_400Regular'
     },
     divCityImg:{
         width:380,

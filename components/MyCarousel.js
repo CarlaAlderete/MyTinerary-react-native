@@ -32,7 +32,7 @@ const MyCarousel =()=>{
         <SafeAreaView>
             <ImageBackground source={require('../assets/fondo2.png')} style={styles.carouselConteiner}>
                 <View>
-                    <Text style={styles.h3}>Popular MyTineraries</Text>
+                    <Text style={styles.h3}>Popular  MyTineraries</Text>
                 </View>
                 <Carousel
                   layout={'tinder'}
@@ -62,7 +62,8 @@ const styles = StyleSheet.create({
     h3:{
         textAlign:'center',
         marginBottom:10,
-        fontSize:25,
+        fontSize:35,
+        fontFamily:'Acme_400Regular'
     },
     divCarousel:{
         marginBottom:10,

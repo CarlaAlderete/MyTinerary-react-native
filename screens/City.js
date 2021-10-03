@@ -55,7 +55,8 @@ const styles = StyleSheet.create({
     h3:{
         textAlign:'center',
         margin:7,
-        fontSize:25,
+        fontSize:35,
+        fontFamily:'Acme_400Regular'
     },
     divnullItineraries:{
         width:'90%',
@@ -103,8 +104,9 @@ const styles = StyleSheet.create({
     },
     p:{
         textAlign:'center',
-        fontSize:15,
+        fontSize:17,
         paddingVertical:10,
-        paddingHorizontal:30
+        paddingHorizontal:30,
+        fontFamily:'Roboto_400Regular'
     },
 })

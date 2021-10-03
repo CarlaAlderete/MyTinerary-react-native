@@ -95,13 +95,15 @@ const styles=StyleSheet.create({
         marginBottom:10,
     },
     textCityh3:{
-        fontSize:25,
+        fontSize:30,
         textTransform:'uppercase',
-        textAlign:'center'
+        textAlign:'center',
+        fontFamily:'Acme_400Regular'
     },
     textCityP:{
         fontSize:18,
-        textAlign:'center'
+        textAlign:'center',
+        fontFamily:'Roboto_400Regular'
     }
 
 })

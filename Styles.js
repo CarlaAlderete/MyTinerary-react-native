@@ -1,22 +1,6 @@
-import React from 'react'
-import { View, Text, StyleSheet, Image} from 'react-native'
-// const styles = require('../Styles')
+import {StyleSheet} from 'react-native'
 
-const Welcome =({navigation})=>{
-    return(
-        <View style={styles.mainWelcome}>
-            <View style={styles.logoGr}>
-                <Image source={require('../assets/logo.png')} style={styles.icon}/>
-                <Text style={styles.logoGrText}>Find your perfect trip, designed by insiders who know and love their cities!</Text>
-            </View>
-            <Text style={styles.call} onPress={()=>navigation.navigate('Home')}>GO</Text>
-        </View>
-    )
-}
-
-export default Welcome
-
-const styles = StyleSheet.create({
+export default StyleSheet.create({
     mainWelcome:{
         flex:1,
         alignItems:'center',
@@ -37,11 +21,10 @@ const styles = StyleSheet.create({
     logoGrText:{
         textAlign:'center',
         color:'#fff',
+        fontWeight:'bold',
         fontSize:25,
-        fontFamily:'Roboto_700Bold'
     },
     call:{
-        fontFamily:'Roboto_400Regular',
         backgroundColor:'#5855551e',
         paddingLeft: 20,
         paddingRight: 20,
@@ -50,6 +33,7 @@ const styles = StyleSheet.create({
         borderWidth:2,
         borderColor: '#585555b6',
         borderRadius:15,
+        fontWeight: 'bold',
         margin:2,
         width:80,
         textAlign:'center'

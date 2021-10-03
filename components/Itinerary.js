@@ -46,7 +46,7 @@ const Itinerary =({itinerary,changeOneItineraryLike,userId,usertoken,navigation}
                         <ImageBackground style={styles.photoUser} imageStyle={{borderRadius:50}} source={{uri:`https://mytinerary-ca.herokuapp.com/assets/${user.photo}`}}></ImageBackground>
                         <Text>{user.name}</Text>
                     </View>
-                    <View>
+                    <View style={styles.infoHeader}>
                         <View style={styles.tittle}>
                             <Text style={styles.h2}>{name}</Text>
                             {!likeIcon.condition 
@@ -63,14 +63,14 @@ const Itinerary =({itinerary,changeOneItineraryLike,userId,usertoken,navigation}
                             <Text style={styles.like}>{likeIcon.cant}</Text>
                         </View>
                         <View style={styles.detalle}>
-                        <View style={styles.detalles}>
-                            <Text>Price:</Text>
-                            <View style={styles.dollars}>
-                                {icon}
+                            <View style={styles.detalles}>
+                                <Text>Price:</Text>
+                                <View style={styles.dollars}>
+                                    {icon}
+                                </View>
                             </View>
+                            <Text>Time:{'  🕗'+info.time+'hrs'}</Text>
                         </View>
-                        <Text>Time:{'  🕗'+info.time+'hrs'}</Text>
-                    </View>
                     </View>
                 </View>
                 <View>
@@ -121,6 +121,10 @@ const styles=StyleSheet.create({
       paddingHorizontal:5,
       justifyContent:'space-between'
     },
+    infoHeader:{
+        flex:1,
+        paddingLeft:10
+    },
     users:{
         alignItems:'center'
     },
@@ -136,7 +140,8 @@ const styles=StyleSheet.create({
     },
     h2:{
         fontSize:25,
-        marginRight:5
+        marginRight:5,
+        fontFamily:'Roboto_700Bold'
     },
     like:{
         fontSize:30
@@ -150,21 +155,20 @@ const styles=StyleSheet.create({
         marginLeft:5,
     },
     detalle:{
-        flexDirection:'row',
-        paddingHorizontal:10,
+        marginLeft:10,
         paddingVertical:3,
         justifyContent:'space-around',
-        alignItems:'center'
+        alignItems:'flex-start'
     },
     detalles:{
         flexDirection:'row',
         justifyContent:'center',
-        alignItems:'center',
-        width:'50%'
+        alignItems:'center'
     },
     textDescrip:{
         fontSize:25,
-        paddingLeft:8
+        paddingLeft:8,
+        fontFamily:'Roboto_400Regular'
     },
     hashtags:{
         flexDirection:'row',

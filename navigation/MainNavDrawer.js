@@ -1,5 +1,5 @@
 import React from 'react'
-import { connect } from 'react-redux'
+import {connect} from 'react-redux'
 import userActions from '../redux/actions/userActions'
 import {createDrawerNavigator, DrawerContentScrollView, DrawerItem, DrawerItemList} from '@react-navigation/drawer'
 import Welcome from '../screens/Welcome'
@@ -14,8 +14,8 @@ const Navigator=({user,signOut})=>{
     return(
         <Drawer.Navigator screenOptions={{headerStyle:{backgroundColor:'tomato'}}}>
             <Drawer.Screen name='Welcome' component={Welcome} options={{headerShown:false}}/>
-            <Drawer.Screen name='SignIn' component={SignIn}/>
-            <Drawer.Screen name='SignUp' component={SignUp}/>
+            {user ? <Drawer.Screen name='SignIn' component={SignIn}/> : null}
+            {user ? <Drawer.Screen name='SignUp' component={SignUp}/> : null}
             <Drawer.Screen name='Home' component={Home}/>
             <Drawer.Screen name='Cities' component={Cities}/>
         </Drawer.Navigator>

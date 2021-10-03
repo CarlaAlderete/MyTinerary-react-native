@@ -87,11 +87,13 @@ const styles= StyleSheet.create({
     h3:{
         textAlign:'center',
         marginBottom:5,
-        fontSize:25,
+        fontSize:35,
+        fontFamily:'Acme_400Regular'
     },
     p:{
         textAlign:'center',
         fontSize:15,
+        fontFamily:'Roboto_400Regular'
     },
     divCall:{
         alignItems:'center'
@@ -105,7 +107,7 @@ const styles= StyleSheet.create({
         borderWidth:2,
         borderColor: '#585555b6',
         borderRadius:10,
-        fontWeight: 'bold',
+        fontFamily:'Roboto_700Bold',
         margin:10, 
         textAlign:'center',
     },
