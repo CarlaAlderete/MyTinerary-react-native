@@ -76,7 +76,7 @@ const styles=StyleSheet.create({
     },
     item:{
         marginTop:15,
-        marginBottom:'21%',
+        marginBottom:'28%',
         height: 550,
     },
     cardImg:{

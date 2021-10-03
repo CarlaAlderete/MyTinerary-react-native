@@ -8,13 +8,8 @@ const userReducer = (state= {user:{name:null,photo:null,token:null,id:null}} ,ac
         case'SIGN_OUT_USER':
         return{
             ...state,
-            user:{name:'', photo:'', token:'',id:''}
+            user:{name:null, photo:null, token:null,id:null}
         }
-        // case'FORCED_SIGN_IN':
-        // return{
-        //     ...state,
-        //     user:action.payload
-        // }
         default: return state
     }
 }

@@ -31,7 +31,7 @@ const SignUp = ({navigation,postNewUser})=>{
             postNewUser(data)
             .then(res=>{
                 if(!res.success){
-                    if(res.res === "Mail is being used with another account"){
+                    if(res.res === '*Mail is being used with another account'){
                         setErrorFront(res.res)
                     }else{
                         res.res.map(obj=>setMessage({...message, [obj.path[0]]: obj.message}))
@@ -46,7 +46,6 @@ const SignUp = ({navigation,postNewUser})=>{
         setErrorFront('')
         e.nativeEvent.text !== data.password ? setVerifyPassword(true) : setVerifyPassword(null)
     }
-
     return(
         <TouchableWithoutFeedback onPress={()=>{Keyboard.dismiss()}}>
             <SafeAreaView style={styles.mainSign}>
@@ -58,20 +57,20 @@ const SignUp = ({navigation,postNewUser})=>{
                             <Text onPress={()=>navigation.navigate('SignIn')} style={styles.link}>Sign In</Text>
                         </View>
                         <View>
-                            <Text>{errorFront}</Text>
+                            <Text style={styles.error}>{errorFront}</Text>
                         </View>
-                        {message.name && <Text>{message.name}</Text>}
+                        {message.name && <Text style={styles.error}>{message.name}</Text>}
                         <TextInput style={!message.name ? styles.input : styles.borderError} placeholder='First Name' onChangeText={(e)=>addDataUserHandler(e,'name')}/>
-                        {message.lastName && <Text>{message.lastName}</Text>}
+                        {message.lastName && <Text style={styles.error}>{message.lastName}</Text>}
                         <TextInput style={!message.lastName ? styles.input : styles.borderError} placeholder='Last Name' onChangeText={(e)=>addDataUserHandler(e,'lastName')}/>
-                        {message.mail && <Text>{message.mail}</Text>}
+                        {message.mail && <Text style={styles.error}>{message.mail}</Text>}
                         <TextInput style={!message.lastName ? styles.input : styles.borderError} placeholder='E-mail' onChangeText={(e)=>addDataUserHandler(e,'mail')}/>
-                        {message.password && <Text>{message.password}</Text>}
-                        {verifyPassword && <Text>Passwords does not match</Text>}
+                        {message.password && <Text style={styles.error}>{message.password}</Text>}
+                        {verifyPassword && <Text style={styles.error}>Passwords does not match</Text>}
                         <TextInput style={(message.password || verifyPassword) ? styles.borderError : styles.input} secureTextEntry={true} placeholder='Password at least 5 characters' onChangeText={(e)=>addDataUserHandler(e,'password')}/>
-                        {verifyPassword && <Text>Passwords does not match</Text>}
+                        {verifyPassword && <Text style={styles.error}>Passwords does not match</Text>}
                         <TextInput style={!verifyPassword ? styles.input : styles.borderError} secureTextEntry={true} placeholder='Repeat Password' onChangeText={(e)=>addDataUserHandler(e,'verifyPassword')} onEndEditing={verifyPasswordHandler}/>
-                        {message.src && <Text>{message.src}</Text>}
+                        {message.src && <Text style={styles.error}>{message.src}</Text>}
                         <TextInput style={!message.src ? styles.input : styles.borderError} placeholder='Url' onChangeText={(e)=>addDataUserHandler(e,'src')}/>
                         <ModalSelector
                             style={styles.input}
@@ -175,6 +174,12 @@ const styles = StyleSheet.create({
     },
     link:{
         color:'blue'
+    },
+    error:{
+        color:'red',
+        fontSize:12,
+        padding:0,
+        fontFamily:'Roboto_400Regular'
     }
 })
 

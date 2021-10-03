@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react'
 import {connect} from 'react-redux'
-import {Pressable, Text, TextInput,View,StyleSheet} from 'react-native'
+import {Text, TextInput,View,StyleSheet} from 'react-native'
 import {Icon} from 'react-native-elements'
 import itinerariesActions from '../redux/actions/itinerariesActions'
 import EveryComment from './EveryComment'
@@ -17,7 +17,7 @@ const Comments=({getComments,addComment,editComment,userToken,userId,itineraryId
     },[])
 
     const toWriteHandler=(e)=> setText(e)
-    const everyComment =newComments.map(obj =><EveryComment key={obj._id} comment={obj} user={userId} userToken={userToken} deleteCommentHandler={deleteCommentHandler}/>)
+    const everyComment =newComments.map(obj =><EveryComment key={obj._id} comment={obj} user={userId} userToken={userToken} deleteCommentHandler={()=>deleteCommentHandler(obj._id)}/>)
 
     const addCommentHandler=()=>{
         setText('')
@@ -52,8 +52,8 @@ const Comments=({getComments,addComment,editComment,userToken,userId,itineraryId
             <View style={styles.send}>
                 <TextInput placeholder={!userToken ? 'Create an account and add your comment' : 'Add a comment...'} value={text} editable={userToken ? true : false} style={styles.inputcomment} onChangeText={toWriteHandler}/>
                 <Icon
-                    name='heart-alt'
-                    type='fontisto'
+                    name='paper-plane'
+                    type='font-awesome'
                     color='black'
                     onPress={!userToken ? null : addCommentHandler}
                 />

@@ -4,9 +4,8 @@ import { connect } from 'react-redux'
 import {Icon} from 'react-native-elements'
 import itinerariesActions from '../redux/actions/itinerariesActions'
 
-const Itinerary =({itinerary,changeOneItineraryLike,userId,usertoken,navigation})=>{
-    const {name, photo, user, description, info, like, _id, comments}=itinerary
-    // const [view, setView] = useState ({condition: false, text:'View More'})
+const Itinerary =({itinerary,changeOneItineraryLike,user1,userId,usertoken,navigation})=>{
+    const {name, photo, user, description, info, like, _id}=itinerary
     const [likeIcon, setLikeIcon] = useState ({cant:like.length, condition:''})
 
     useEffect(()=>{
@@ -36,7 +35,7 @@ const Itinerary =({itinerary,changeOneItineraryLike,userId,usertoken,navigation}
 
     const twitter = info.hashtag.map(obj => <Text key={obj} style={styles.hashtag}>#{obj} </Text>)
     const icon = [...Array(parseInt(info.price))].map((obj, index) => <Image source={require('../assets/money.png')} key={index} style={styles.dollar}/>)
-
+    console.log(user1)
     return(
         <View style={styles.mainItinerary}>
             <View style={styles.divItinerary}>
@@ -87,7 +86,8 @@ const Itinerary =({itinerary,changeOneItineraryLike,userId,usertoken,navigation}
 const mapStateToProps= (state)=>{
     return{
         usertoken:state.user.user.token,
-        userId:state.user.user.id
+        userId:state.user.user.id,
+        user1:state.user.user
     }
 }
 const mapDispatchToProps={

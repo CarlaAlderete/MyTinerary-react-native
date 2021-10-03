@@ -16,17 +16,21 @@ const Stack = createNativeStackNavigator()
 const MainNavStack = ({forcedSignIn}) =>{
 
     useEffect(() =>{
-        console.log('voy a evaluar')
         if(AsyncStorage.getItem('token')){
-        console.log('tengo un user')
         forcedSignIn(AsyncStorage.getItem('token'))
         }
-      // eslint-disable-next-line react-hooks/exhaustive-deps
     },[])
 
     return(
-        <Stack.Navigator screenOptions={{headerStyle:{backgroundColor:'tomato'}}}>
-            <Stack.Screen name='Welcome' component={Navigator} options={{headerShown:false}}/>
+        <Stack.Navigator screenOptions={{
+            headerStyle:{
+                backgroundColor:'#7070704d'
+            },
+            headerTitleStyle:{
+                fontFamily:'Acme_400Regular',
+                fontSize:30
+            }}}>
+            <Stack.Screen name='Start' component={Navigator} options={{headerShown:false}}/>
             <Stack.Screen name='Home' component={Home}/>
             <Stack.Screen name='SignIn' component={SignIn}/>
             <Stack.Screen name='SignUp' component={SignUp}/>

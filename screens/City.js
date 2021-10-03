@@ -35,7 +35,9 @@ const City=({route,getOneCity,getItineraries,itineraries,city,navigation})=>{
             </View>
             <Text style={styles.p}>{city.description}</Text>
             <Text style={styles.h3}>Here are some of our Itineraries!</Text>
-            {itinerariesByCity}
+            <View>
+                {itinerariesByCity}
+            </View>
         </ScrollView>
     )
 }

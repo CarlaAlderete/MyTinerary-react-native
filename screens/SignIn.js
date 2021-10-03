@@ -12,7 +12,6 @@ const SignIn = ({singInUser,navigation})=>{
     }
 
     const signInUserHandler=()=>{
-        console.log('aprete el boto')
         if(!data.mail || !data.password){
             setError('*Data is missing, fill in all data')
         }else{
@@ -108,7 +107,8 @@ const styles = StyleSheet.create({
     error:{
         color:'red',
         fontSize:12,
-        padding:0
+        padding:0,
+        fontFamily:'Roboto_400Regular'
     },
     sign:{
         flexDirection:'row'

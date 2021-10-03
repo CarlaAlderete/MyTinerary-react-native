@@ -23,7 +23,7 @@ const userActions={
             try{
                 let res = await axios.post('https://mytinerary-ca.herokuapp.com/api/user/signup', data)
                 if(res.data.success){
-                    await AsyncStorage.setItem('token', response.data.respuesta.token)
+                    // await AsyncStorage.setItem('token', response.data.res.token)
                     dispatch({type:'SIGN_IN_USER', payload:res.data.res})
                     return({success:true})
                 }else{

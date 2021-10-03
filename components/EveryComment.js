@@ -31,7 +31,6 @@ const EveryComment = ({editComment,user,comment,userToken,deleteCommentHandler})
         setError('')
     }
     const editCommentHandler=(text)=>{
-        console.log(_id, userToken, text)
         editComment(_id, userToken, text)
         .then(res=>{
             if(res.success){
@@ -44,15 +43,15 @@ const EveryComment = ({editComment,user,comment,userToken,deleteCommentHandler})
             }
         })
     }
-    
+  
     const editComments= !edit ? null 
         :<View style={styles.option}>
             {(!enable.edit && enable.delete) && <Text>Sure?</Text>}
-            {(!enable.delete && !enable.edit) && <Icon name='trash' type='fontisto'  color='black' onPress={enableDeleteHandler}/>}
-            {enable.edit && <Icon name='paper-plane' type='fontisto'  color='black' onPress={()=>editCommentHandler(newText.editcomment)}/>}
-            {(enable.edit || enable.delete) && <Icon name='close' type='fontisto'  color='black' onPress={()=>enableEditHandler('cruz')}/>}
-            {(!enable.edit && enable.delete) && <Icon name='check' type='fontisto'  color='black' onPress={()=>deleteCommentHandler(_id)}/>}
-            {(!enable.edit && !enable.delete) && <Icon name='editOutlined' type='antdesign'  color='black' onPress={()=>enableEditHandler('pencil')}/>}
+            {(!enable.delete && !enable.edit) && <Icon name='trash' type='font-awesome'  color='black' onPress={enableDeleteHandler}/>}
+            {enable.edit && <Icon name='check-circle-o' type='font-awesome'  color='black' onPress={()=>editCommentHandler(newText.editcomment)}/>}
+            {(enable.edit || enable.delete) && <Icon name='times-circle-o' type='font-awesome'  color='black' onPress={()=>enableEditHandler('cruz')}/>}
+            {(!enable.edit && enable.delete) && <Icon name='check-circle-o' type='font-awesome'  color='black' onPress={deleteCommentHandler}/>}
+            {(!enable.edit && !enable.delete) && <Icon name='pencil' type='font-awesome'  color='black' onPress={()=>enableEditHandler('pencil')}/>}
         </View>
 
     return(
