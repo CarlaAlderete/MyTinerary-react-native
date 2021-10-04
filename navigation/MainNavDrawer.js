@@ -20,7 +20,7 @@ const Navigator=({user,signOut,navigation})=>{
     const CustomDrawerContent=(props)=>{
         return(
             <DrawerContentScrollView {...props} screenOptions>
-                {user.token && <DrawerItem label={'Hi! '+ user.name.toUpperCase()} labelStyle={{fontFamily:'Acme_400Regular',fontSize:18}}/>}
+                {user.token && <DrawerItem label={'Hi! '+ user.name.toUpperCase()} labelStyle={{fontFamily:'Acme_400Regular',fontSize:18, color:'#000'}}/>}
                 {user.token && <DrawerItem label="Sing Out" onPress={() => signOutHandler()} inactiveBackgroundColor='#5855551e' labelStyle={
                 {fontFamily:'Acme_400Regular',
                  fontSize:18}}
@@ -53,10 +53,10 @@ const Navigator=({user,signOut,navigation})=>{
             }}}
             drawerContent={(props) => <CustomDrawerContent {...props}/>}>
             {!user.token ? <Drawer.Screen name='Welcome' component={Welcome} options={{headerShown:false}}/> : null}
-            {!user.token ? <Drawer.Screen name='SignIn' component={SignIn}/> : null}
-            {!user.token ? <Drawer.Screen name='SignUp' component={SignUp}/> : null}
             <Drawer.Screen name='Home' component={Home}/>
             <Drawer.Screen name='Cities' component={Cities}/>
+            {!user.token ? <Drawer.Screen name='SignIn' component={SignIn}/> : null}
+            {!user.token ? <Drawer.Screen name='SignUp' component={SignUp}/> : null}
         </Drawer.Navigator>
     )
 }

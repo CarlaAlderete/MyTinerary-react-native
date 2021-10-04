@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import {Icon} from 'react-native-elements'
 import itinerariesActions from '../redux/actions/itinerariesActions'
 import AwesomeAlert from 'react-native-awesome-alerts'
+import { set } from 'react-native-reanimated'
 
 const Itinerary =({itinerary,changeOneItineraryLike,user1,userId,usertoken,navigation})=>{
     const {name, photo, user, description, info, like, _id}=itinerary
@@ -24,7 +25,6 @@ const Itinerary =({itinerary,changeOneItineraryLike,user1,userId,usertoken,navig
             setShowAlert(true)
         }
     }
-
     const twitter = info.hashtag.map(obj => <Text key={obj} style={styles.hashtag}>#{obj} </Text>)
     const icon = [...Array(parseInt(info.price))].map((obj, index) => <Image source={require('../assets/money.png')} key={index} style={styles.dollar}/>)
     return(
@@ -85,7 +85,9 @@ const Itinerary =({itinerary,changeOneItineraryLike,user1,userId,usertoken,navig
                 confirmButtonColor="#2BC900"
                 cancelButtonColor='#C90000'
                 onCancelPressed={() => setShowAlert(false)}
-                onConfirmPressed={() => navigation.navigate('SignIn')}
+                onConfirmPressed={() => {
+                    setShowAlert(false)
+                    navigation.navigate('SignIn')}}
                 confirmButtonStyle={{
                     color:'black'
                 }}
