@@ -3,7 +3,7 @@ import {Text, StyleSheet, View, Keyboard, ImageBackground, TextInput, SafeAreaVi
 import {connect} from 'react-redux'
 import userActions from '../redux/actions/userActions'
 
-const SignIn = ({singInUser,navigation})=>{
+const SignIn = ({signInUser,navigation})=>{
     const[data, setData] = useState({mail:'', password:''})
     const[error, setError] = useState('')
 
@@ -15,7 +15,7 @@ const SignIn = ({singInUser,navigation})=>{
         if(!data.mail || !data.password){
             setError('*Data is missing, fill in all data')
         }else{
-            singInUser(data)
+            signInUser(data)
             .then(res=>{
                 if(!res.success){
                     setError('*'+res.res)
@@ -50,7 +50,7 @@ const SignIn = ({singInUser,navigation})=>{
 }
 
 const mapDispatchToProps={
-    singInUser:userActions.singInUser
+    signInUser:userActions.signInUser
 }
 
 export default connect(null, mapDispatchToProps)(SignIn)

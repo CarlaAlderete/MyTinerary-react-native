@@ -2,7 +2,7 @@ import axios from 'axios'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 
 const userActions={
-    singInUser:(data)=>{
+    signInUser:(data)=>{
         return async(dispatch, getState)=>{
             try{
                 let res = await axios.post('https://mytinerary-ca.herokuapp.com/api/user/signin', data)

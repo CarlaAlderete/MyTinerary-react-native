@@ -21,7 +21,7 @@ const Navigator=({user,signOut,navigation})=>{
         return(
             <DrawerContentScrollView {...props} screenOptions>
                 {user.token && <DrawerItem label={'Hi! '+ user.name.toUpperCase()} labelStyle={{fontFamily:'Acme_400Regular',fontSize:18, color:'#000'}}/>}
-                {user.token && <DrawerItem label="Sing Out" onPress={() => signOutHandler()} inactiveBackgroundColor='#5855551e' labelStyle={
+                {user.token && <DrawerItem label="Sign Out" onPress={() => signOutHandler()} inactiveBackgroundColor='#5855551e' labelStyle={
                 {fontFamily:'Acme_400Regular',
                  fontSize:18}}
                 />}

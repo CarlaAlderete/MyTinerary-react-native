@@ -64,13 +64,13 @@ const Comments=({getComments,addComment,editComment,userToken,userId,itineraryId
                 show={showAlert}
                 showProgress={false}
                 animatedValue={0,5}
-                title="Sing In to comment"
+                title="Sign In to comment"
                 closeOnTouchOutside={true}
                 closeOnHardwareBackPress={false}
                 showCancelButton={true}
                 showConfirmButton={true}
                 cancelText="Cancel"
-                confirmText="Sing In"
+                confirmText="Sign In"
                 confirmButtonColor="#2BC900"
                 cancelButtonColor='#C90000'
                 onCancelPressed={() => setShowAlert(false)}

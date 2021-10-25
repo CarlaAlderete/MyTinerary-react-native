@@ -7,14 +7,6 @@ const CardCity=({newCities,filterCities,getCities,navigation})=>{
     const [loading, setLoading] = useState({condition:true, text:''})
     
     useEffect(()=>{
-        // getCities()
-        // .then(res=>{
-        //     if(res.success){
-        //         setLoading({...loading, condition:false})
-        //     }else{
-        //         setLoading({...loading, text:'Oop! '+res.res, back:'Back to Home'})
-        //     }
-        // })
         if(!newCities.length){
             getCities()
             .then(res=>{

@@ -75,13 +75,13 @@ const Itinerary =({itinerary,changeOneItineraryLike,user1,userId,usertoken,navig
                 show={showAlert}
                 showProgress={false}
                 animatedValue={0,5}
-                title="Sing In to like"
+                title="Sign In to like"
                 closeOnTouchOutside={true}
                 closeOnHardwareBackPress={false}
                 showCancelButton={true}
                 showConfirmButton={true}
                 cancelText="Cancel"
-                confirmText="Sing In"
+                confirmText="Sign In"
                 confirmButtonColor="#2BC900"
                 cancelButtonColor='#C90000'
                 onCancelPressed={() => setShowAlert(false)}
